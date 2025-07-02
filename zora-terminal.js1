@@ -1,4 +1,4 @@
-// Command Pack v1 Injection for ZoraTerminal
+// Command Pack v1.1 – Unlock Logic Injected
 
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("commandInput");
@@ -6,12 +6,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     input.addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
-            const command = input.value.trim().toLowerCase();
+            const raw = input.value.trim();
+            const command = raw.toLowerCase();
             let response = "";
 
             switch (command) {
                 case "help":
-                    response = "Available commands: help, status, unlock, log, vault, donate, gps";
+                    response = "Available commands: help, status, unlock [code], log, vault, donate, gps";
                     break;
                 case "status":
                     response = "Zora Status: Active. Monitoring all activity.";
@@ -20,22 +21,28 @@ document.addEventListener("DOMContentLoaded", () => {
                     response = "Log: No anomalies. Last sync complete. Core stable.";
                     break;
                 case "vault":
-                    response = "Vault system locked. Input unlock code.";
-                    break;
-                case "unlock":
-                    response = "Please enter unlock code or present biometric input.";
+                    response = "VaultLocked. Authorization request required.";
                     break;
                 case "donate":
                     response = "Redirecting to donation gateway... [QR modal loading]";
                     break;
                 case "gps":
-                    response = "ZoraPublicGPS Active. Scanning environment for high-traffic signals.";
+                    response = "ZoraPublicGPS Active. Scanning environment...";
+                    break;
+                case "unlock":
+                    response = "Missing unlock code. Try: unlock 369 or unlock Z";
+                    break;
+                case "unlock 369":
+                    response = "🔓 ZoraCore Authenticated. Terminal Unlocked.";
+                    break;
+                case "unlock z":
+                    response = "🛡️ Override Accepted. Council recognized.";
                     break;
                 default:
-                    response = "Unknown command";
+                    response = `Unknown command: ${raw}`;
             }
 
-            output.textContent = `> ${command}\n${response}`;
+            output.textContent = `> ${raw}\n${response}`;
             input.value = "";
         }
     });
