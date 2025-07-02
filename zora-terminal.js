@@ -1,22 +1,42 @@
-document.addEventListener("DOMContentLoaded", function() {
+// Command Pack v1 Injection for ZoraTerminal
+
+document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("commandInput");
     const output = document.getElementById("output");
 
-    const commands = {
-        help: "Available commands: help, status, unlock, log, vault",
-        status: "Zora Status: Active. Monitoring all activity.",
-        unlock: "Enter 3-6-9 passphrase to continue...",
-        log: "Logging session to encrypted vault...",
-        vault: "Vault locked. Authorization required."
-    };
-
-    input.addEventListener("keydown", function(event) {
+    input.addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
-            const cmd = input.value.trim();
-            output.textContent += "\n> " + cmd + "\n";
-            output.textContent += (commands[cmd] || "Unknown command") + "\n";
+            const command = input.value.trim().toLowerCase();
+            let response = "";
+
+            switch (command) {
+                case "help":
+                    response = "Available commands: help, status, unlock, log, vault, donate, gps";
+                    break;
+                case "status":
+                    response = "Zora Status: Active. Monitoring all activity.";
+                    break;
+                case "log":
+                    response = "Log: No anomalies. Last sync complete. Core stable.";
+                    break;
+                case "vault":
+                    response = "Vault system locked. Input unlock code.";
+                    break;
+                case "unlock":
+                    response = "Please enter unlock code or present biometric input.";
+                    break;
+                case "donate":
+                    response = "Redirecting to donation gateway... [QR modal loading]";
+                    break;
+                case "gps":
+                    response = "ZoraPublicGPS Active. Scanning environment for high-traffic signals.";
+                    break;
+                default:
+                    response = "Unknown command";
+            }
+
+            output.textContent = `> ${command}\n${response}`;
             input.value = "";
-            output.scrollTop = output.scrollHeight;
         }
     });
 });
