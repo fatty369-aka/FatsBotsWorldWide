@@ -1,23 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zora Terminal</title>
-  <style>
-    body { background: #000; color: #0f0; font-family: monospace; padding: 20px; }
-    #console { white-space: pre-wrap; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Zora Terminal</title>
+    <link rel="stylesheet" href="zora.css">
 </head>
 <body>
-  <h1>Zora Terminal</h1>
-  <div id="console">:: Awaiting Command...</div>
-  <script>
-    const consoleDiv = document.getElementById('console');
-    document.addEventListener('keydown', (e) => {
-      consoleDiv.innerText += '\n> ' + e.key;
-    });
-  </script>
+    <div id="terminal">
+        <h1>Zora Terminal Activated...</h1>
+        <input type="text" id="commandInput" placeholder="Enter command..." autofocus>
+        <pre id="output"></pre>
+    </div>
+    <script src="zora-terminal.js"></script>
 </body>
 </html>
