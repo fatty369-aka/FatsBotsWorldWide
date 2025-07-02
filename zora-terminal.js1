@@ -1,0 +1,41 @@
+// Command Pack v1.1 — Zora Unlock Logic Injected
+
+document.addEventListener("DOMContentLoaded", function () {
+  const input = document.getElementById("commandInput");
+  const output = document.getElementById("output");
+
+  input.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      const raw = input.value.trim();
+      const command = raw.toLowerCase();
+      let response = "";
+
+      switch (command) {
+        case "help":
+          response = "Available commands: help, status, unlock, log, vault";
+          break;
+        case "status":
+          response = "Zora Status: Active. Monitoring all activity.";
+          break;
+        case "unlock":
+          response = "VaultLocked Authorization Request";
+          break;
+        case "369":
+        case "z":
+          response = "Zora Vault Override Accepted. Access Granted.";
+          break;
+        case "log":
+          response = "System log not available in public mode.";
+          break;
+        case "vault":
+          response = "Vault Access Requires Unlock Code.";
+          break;
+        default:
+          response = "Unknown command";
+      }
+
+      output.innerText = `> ${raw}\n${response}`;
+      input.value = "";
+    }
+  });
+});
