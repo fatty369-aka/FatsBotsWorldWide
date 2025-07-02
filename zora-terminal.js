@@ -1,4 +1,4 @@
-// Command Pack v1.1 – Unlock Logic Injected
+// Command Pack v1.1 – Zora Unlock Logic Injected
 
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("commandInput");
